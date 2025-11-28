@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitZone Bogotá</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>FitZone Local Bogotá</header>
+
+    <!-- ================= LOGIN RESPONSIVO ================= -->
+    <section id="login" class="login-container active">
+        <div class="login-box">
+            <h2>Iniciar Sesión</h2>
+            <form id="loginForm">
+                <input type="email" id="login_email" placeholder="Correo electrónico" required>
+                <input type="password" id="login_password" placeholder="Contraseña" required>
+                <button type="submit">Entrar</button>
+            </form>
+
+            <p class="register-link">¿No tienes cuenta?
+                <span onclick="showRegister()" class="link-btn">Registrarse</span>
+            </p>
+        </div>
+    </section>
+
+
+    <!-- ================= REGISTRO ================= -->
+    <section id="register" class="login-container" style="display:none;">
+        <div class="login-box">
+            <h2>Crear Cuenta ✨</h2>
+
+            <form id="registerForm">
+                <input type="text" id="reg_username" placeholder="Nombre de usuario" required>
+                <input type="email" id="reg_email" placeholder="Correo electrónico" required>
+                <input type="password" id="reg_password" placeholder="Contraseña" required>
+                <button type="submit">Registrarse</button>
+            </form>
+
+            <p class="register-link">¿Ya tienes cuenta?
+                <span onclick="showLogin()" class="link-btn">Iniciar sesión</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- ─── PÁGINA INICIO ───────────────────────────── -->
+    <div id="inicio" class="page active">
+        <h2>🏋️‍♀️ Novedades</h2>
+        <div class="novedad">
+            <h3>Nuevo menú “Bowls Energéticos”</h3>
+            <p>¡Prueba combinaciones de frutas, granola y yogurt natural!</p>
+        </div>
+        <div class="novedad">
+            <h3>Entrega gratis esta semana 🚴‍♂️</h3>
+            <p>En pedidos superiores a $25.000 en Bogotá.</p>
+        </div>
+    </div>
+
+    <!-- ─── PÁGINA MENÚ ──────────────────────────────── -->
+    <div id="menu" class="page">
+        <h2>Menú Fit 🍃</h2>
+
+        <div class="categoria" onclick="toggleCategoria('ensaladas')">🥗 Ensaladas</div>
+        <div id="ensaladas" class="productos">
+            <div class="producto">
+                <img src="imagenes/ensalada1.jpg">
+                <div class="producto-info">
+                    <span>Ensalada Mediterránea - $18.000</span>
+                    <div class="botones-producto">
+                        <button onclick="agregarAlCarrito('Ensalada Mediterránea',18000)">🛒</button>
+                        <button onclick="pedirDirecto('Ensalada Mediterránea')">⚡</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="producto">
+                <img src="imagenes/ensalada2.jpg">
+                <div class="producto-info">
+                    <span>Ensalada César Fit - $17.000</span>
+                    <div class="botones-producto">
+                        <button onclick="agregarAlCarrito('Ensalada César Fit',17000)">🛒</button>
+                        <button onclick="pedirDirecto('Ensalada César Fit')">⚡</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="categoria" onclick="toggleCategoria('wraps')">🌯 Wraps</div>
+        <div id="wraps" class="productos">
+            <div class="producto">
+                <img src="imagenes/wrap1.jpg">
+                <div class="producto-info">
+                    <span>Wrap de Pollo - $20.000</span>
+                    <div class="botones-producto">
+                        <button onclick="agregarAlCarrito('Wrap de Pollo',20000)">🛒</button>
+                        <button onclick="pedirDirecto('Wrap de Pollo')">⚡</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="producto">
+                <img src="imagenes/wrap2.jpg">
+                <div class="producto-info">
+                    <span>Wrap Vegano - $19.000</span>
+                    <div class="botones-producto">
+                        <button onclick="agregarAlCarrito('Wrap Vegano',19000)">🛒</button>
+                        <button onclick="pedirDirecto('Wrap Vegano')">⚡</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── CARRITO ──────────────────────────────────── -->
+    <div id="carrito" class="page">
+        <h2>🛒 Tu carrito</h2>
+        <div id="carrito-lista"></div>
+        <div id="total">Carrito vacío.</div>
+
+        <div id="map"></div>
+
+        <div class="direccion-form">
+            <h3>📍 Dirección de entrega</h3>
+            <input type="text" id="direccion" placeholder="Ej: Calle 123 #45-67">
+            <input type="text" id="detalle" placeholder="Apto, Torre, Conjunto (opcional)">
+        </div>
+
+        <button id="btn-pagar" onclick="pagar()">💳 Pagar todo</button>
+        <button class="btn-externo" onclick="pedirRappi()">🟠 Pedir por Rappi</button>
+        <button class="btn-uber" onclick="pedirUber()">🚗 Uber Eats</button>
+    </div>
+
+    <footer id="footer" style="display:none;">
+        <button id="btnInicio" class="active" onclick="mostrarPagina('inicio')">Inicio</button>
+        <button id="btnMenu" onclick="mostrarPagina('menu')">Menú</button>
+        <button id="btnCarrito" onclick="mostrarPagina('carrito')">Carrito</button>
+        <button onclick="logout()">Salir</button>
+    </footer>
+
+<script src="app.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"></script>
+</body>
+</html>
